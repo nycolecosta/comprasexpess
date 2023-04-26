@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ImageButton xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ibVoltar"
+    android:layout_width="32dp"
+    android:layout_height="32dp"
+    android:background="@color/color_azul"
+    android:src="@drawable/ic_voltar">
+
+
+</ImageButton>

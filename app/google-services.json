@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "878357122449",
+    "project_id": "compras-express-21a1e",
+    "storage_bucket": "compras-express-21a1e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:878357122449:android:34d9da57a342e909085e30",
+        "android_client_info": {
+          "package_name": "com.example.comprasexpress"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "878357122449-36duuce93eqtaa69sibcslkjg8hsliv1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.comprasexpress",
+            "certificate_hash": "b227958b34a2e32dee59065e0335f337792a530f"
+          }
+        },
+        {
+          "client_id": "878357122449-t0poh1e8tq0mshlqlrld968pq3bnabmj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQxE9FbPoig5aGNHyIOqwwvNXSNIFoLGU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "878357122449-t0poh1e8tq0mshlqlrld968pq3bnabmj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

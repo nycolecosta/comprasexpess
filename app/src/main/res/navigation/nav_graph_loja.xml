@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_loja"
+    app:startDestination="@id/menu_notas">
+
+
+    <fragment
+        android:id="@+id/menu_notas"
+        android:name="com.example.comprasexpress.fragment.loja.LojaNotasFragment"
+        android:label="fragment_loja_notas"
+        tools:layout="@layout/fragment_loja_notas" />
+    <fragment
+        android:id="@+id/menu_produtos"
+        android:name="com.example.comprasexpress.fragment.loja.LojaProdutoFragment"
+        android:label="fragment_loja_prduto"
+        tools:layout="@layout/fragment_loja_produto" />
+    <fragment
+        android:id="@+id/menu_categoria"
+        android:name="com.example.comprasexpress.fragment.loja.LojaCategoriaFragment"
+        android:label="fragment_loja_categoria"
+        tools:layout="@layout/fragment_loja_categoria" />
+    <fragment
+        android:id="@+id/menu_config"
+        android:name="com.example.comprasexpress.fragment.loja.LojaConfigFragment"
+        android:label="fragment_loja_config"
+        tools:layout="@layout/fragment_loja_config" />
+
+</navigation>
