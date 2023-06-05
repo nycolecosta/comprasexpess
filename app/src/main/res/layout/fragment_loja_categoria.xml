@@ -7,7 +7,6 @@
     tools:context=".fragment.loja.LojaCategoriaFragment">
 
     <LinearLayout
-        android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -46,7 +45,7 @@
         app:leftImage="@drawable/ic_delete" />
 
     <ImageButton
-        android:id="@+id/btnAddCategorias"
+        android:id="@+id/btnAddCategoria"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_margin="16dp"
@@ -54,6 +53,5 @@
         android:src="@drawable/ic_add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

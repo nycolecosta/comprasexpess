@@ -10,25 +10,21 @@
         android:name="com.example.comprasexpress.fragment.usuario.UsuarioHomeFragment"
         android:label="fragment_usuario_home"
         tools:layout="@layout/fragment_usuario_home" />
-
     <fragment
-        android:id="@+id/menu_leitor"
-        android:name="com.example.comprasexpress.fragment.usuario.UsuarioLeitorFragment"
-        android:label="fragment_usuario_leitor"
-        tools:layout="@layout/fragment_usuario_leitor" />
-
+        android:id="@+id/menu_pedido"
+        android:name="com.example.comprasexpress.fragment.usuario.UsuarioPedidoFragment"
+        android:label="fragment_usuario_pedido"
+        tools:layout="@layout/fragment_usuario_pedido" />
     <fragment
         android:id="@+id/menu_carrinho"
         android:name="com.example.comprasexpress.fragment.usuario.UsuarioCarrinhoFragment"
         android:label="fragment_usuario_carrinho"
         tools:layout="@layout/fragment_usuario_carrinho" />
-
     <fragment
         android:id="@+id/menu_favorito"
         android:name="com.example.comprasexpress.fragment.usuario.UsuarioFavoritoFragment"
         android:label="fragment_usuario_favorito"
         tools:layout="@layout/fragment_usuario_favorito" />
-
     <fragment
         android:id="@+id/menu_perfil"
         android:name="com.example.comprasexpress.fragment.usuario.UsuarioPerfilFragment"

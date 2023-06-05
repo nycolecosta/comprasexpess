@@ -6,5 +6,18 @@
     <color name="color_verde">#42A414</color>
     <color name="colorPrimaryVariant">@color/color_azul</color>
     <color name="color_cinza">#CABCE3</color>
+    <color name="colorIconeOnBnv">#42A414</color>
+    <color name="colorIconeOffBnv">#000000</color>
     <color name="color_delete">#F44336</color>
+    <color name="color_status_pedido_aprovado">#34A853</color>
+
+    <color name="purple_200">#182945</color>
+    <color name="purple_500">#182945</color>
+    <color name="purple_700">#182945</color>
+    <color name="teal_200">#42A414</color>
+    <color name="teal_700">#42A414</color>
+
+    <color name="ui_components_android_color_primary">@color/color_verde</color>
+    <color name="ui_components_android_color_primary_dark">@color/color_verde</color>
+
 </resources>

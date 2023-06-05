@@ -11,7 +11,45 @@
         <item name="android:windowBackground">@drawable/bg_dialog</item>
         <item name="android:windowMinWidthMinor">80%</item>
     </style>
+
     <style name="CustomAlertDialog2" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:windowBackground">@drawable/bg_dialog</item>
     </style>
+
+    <style name="EditTextTheme">
+        <item name="colorPrimary">@color/color_verde</item>
+        <item name="textColor">@color/color_cinza</item>
+    </style>
+
+    <style name="Theme.Splash" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/color_verde</item>
+        <item name="colorPrimaryVariant">@color/color_azul</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/color_verde</item>
+        <item name="colorSecondaryVariant">@color/color_azul</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">@color/color_azul</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+
+    <style name="BottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="BottomSheetStyleWrapper" parent="Widget.Design.BottomSheet.Modal">
+        <item name="bottomSheetStyle">@style/BottomSheetStyleWrapper</item>
+    </style>
+
+    <style name="Search_View_Theme">
+        <item name="colorAccent">#E3FFBB</item>
+        <item name="colorControlNormal">#D7FFBB</item>
+        <item name="android:editTextColor">@color/white</item>
+        <item name="android:textColorHint">#DFFFBB</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
 </resources>

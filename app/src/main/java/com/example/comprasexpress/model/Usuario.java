@@ -1,7 +1,6 @@
 package com.example.comprasexpress.model;
 
-import com.example.comprasexpress.FireHelper.FirebaseHelper;
-import com.google.firebase.auth.FirebaseAuth;
+import com.example.comprasexpress.helper.FirebaseHelper;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
 
@@ -10,10 +9,10 @@ public class Usuario {
     private String id;
     private String nome;
     private String email;
+    private String telefone;
     private String senha;
 
-    public Usuario(){
-
+    public Usuario() {
     }
 
     public void salvar(){
@@ -45,6 +44,14 @@ public class Usuario {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
     @Exclude

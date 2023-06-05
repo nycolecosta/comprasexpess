@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:padding="32dp">
 
     <ImageView
@@ -12,19 +12,19 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:src="@drawable/ic_delete"
-        app:layout_constraintEnd_toStartOf="@+id/textView3"
+        app:layout_constraintEnd_toStartOf="@+id/textTitulo"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/color_azul" />
+        app:tint="@color/color_verde" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textTitulo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:text="Deseja remover esta categoria ?"
+        tools:text="Título"
         app:layout_constraintBottom_toBottomOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -61,7 +61,7 @@
             android:background="@drawable/bg_add"
             android:text="Sim"
             android:textAllCaps="false"
-            android:textColor="@color/color_verde"
+            android:textColor="@color/white"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="329dp" />
 
@@ -74,9 +74,10 @@
             android:background="@drawable/bg_add"
             android:text="Fechar"
             android:textAllCaps="false"
-            android:textColor="@color/color_verde"
+            android:textColor="@color/white"
             tools:layout_editor_absoluteX="146dp"
             tools:layout_editor_absoluteY="341dp" />
 
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

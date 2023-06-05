@@ -1,8 +1,10 @@
 package com.example.comprasexpress.autenticacao;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -10,10 +12,9 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.comprasexpress.activity.loja.MainActivityLoja;
-import com.example.comprasexpress.activity.usuario.MainActivityUsuario;
+import com.example.comprasexpress.activity.loja.MainActivityEmpresa;
 import com.example.comprasexpress.databinding.ActivityLoginBinding;
-import com.example.comprasexpress.FireHelper.FirebaseHelper;
+import com.example.comprasexpress.helper.FirebaseHelper;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,16 +23,6 @@ import com.google.firebase.database.ValueEventListener;
 public class LoginActivity extends AppCompatActivity {
 
     private ActivityLoginBinding binding;
-
-    private final ActivityResultLauncher<Intent> resultLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            result -> {
-                if (result.getResultCode() == RESULT_OK) {
-                    String email = result.getData().getStringExtra("email");
-                    binding.edtEmail.setText(email);
-                }
-            }
-    );
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +40,8 @@ public class LoginActivity extends AppCompatActivity {
         if (!email.isEmpty()) {
             if (!senha.isEmpty()) {
 
+                ocultaTeclado();
+
                 binding.progressBar.setVisibility(View.VISIBLE);
 
                 login(email, senha);
@@ -61,7 +54,6 @@ public class LoginActivity extends AppCompatActivity {
             binding.edtEmail.requestFocus();
             binding.edtEmail.setError("Informe seu email.");
         }
-
     }
 
     private void login(String email, String senha) {
@@ -70,7 +62,6 @@ public class LoginActivity extends AppCompatActivity {
         ).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 recuperaUsuario(task.getResult().getUser().getUid());
-                finish();
             } else {
                 binding.progressBar.setVisibility(View.GONE);
                 Toast.makeText(this, FirebaseHelper.validaErros(task.getException().getMessage()), Toast.LENGTH_SHORT).show();
@@ -86,12 +77,11 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){ // Usuário
-                    finish();
-                    startActivity(new Intent(getBaseContext(), MainActivityUsuario.class));
-                }else { // Loja
-                    finish();
-                    startActivity(new Intent(getBaseContext(), MainActivityLoja.class));
+                    setResult(RESULT_OK);
+                }else {
+                    startActivity(new Intent(getBaseContext(), MainActivityEmpresa.class));
                 }
+                finish();
             }
 
             @Override
@@ -111,5 +101,20 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(this, CadastroActivity.class);
             resultLauncher.launch(intent);
         });
+    }
+
+    private final ActivityResultLauncher<Intent> resultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == RESULT_OK) {
+                    String email = result.getData().getStringExtra("email");
+                    binding.edtEmail.setText(email);
+                }
+            }
+    );
+    private void ocultaTeclado() {
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(binding.edtEmail.getWindowToken(),
+                InputMethodManager.HIDE_NOT_ALWAYS);
     }
 }

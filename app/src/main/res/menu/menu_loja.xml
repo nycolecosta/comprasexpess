@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/menu_notas"
+        android:id="@+id/menu_pedido"
         android:title="Notas"
-        android:icon="@drawable/ic_loja_pedidos"/>
+        android:icon="@drawable/ic_pedidos"/>
     <item
-        android:id="@+id/menu_produtos"
+        android:id="@+id/menu_produto"
         android:title="Produtos"
         android:icon="@drawable/ic_produtos"/>
     <item
@@ -14,6 +14,6 @@
         android:icon="@drawable/ic_categorias_list"/>
     <item
         android:id="@+id/menu_config"
-        android:title="Configuração"
+        android:title="Config"
         android:icon="@drawable/ic_config"/>
 </menu>

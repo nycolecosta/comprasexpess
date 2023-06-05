@@ -1,6 +1,6 @@
 package com.example.comprasexpress.model;
 
-import com.example.comprasexpress.FireHelper.FirebaseHelper;
+import com.example.comprasexpress.helper.FirebaseHelper;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.storage.StorageReference;
 
@@ -16,14 +16,14 @@ public class Categoria {
         this.setId(categoriaRef.push().getKey());
     }
 
-    public void Salvar() {
+    public void salvar() {
         DatabaseReference categoriaRef = FirebaseHelper.getDatabaseReference()
                 .child("categorias")
                 .child(this.getId());
         categoriaRef.setValue(this);
     }
 
-    public void Delete() {
+    public void delete() {
         DatabaseReference categoriaRef = FirebaseHelper.getDatabaseReference()
                 .child("categorias")
                 .child(this.getId());

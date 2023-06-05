@@ -1,6 +1,13 @@
 <resources>
-    <string name="app_name">ComprasExpress</string>
+    <string name="app_name">Compras Express</string>
     <string name="email">Email</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="valor_off">-%1$d%2$s OFF</string>
+    <string name="valor">R$ %1$s</string>
+    <string name="quantidade">Quantidade: %1$d</string>
+    <string name="valor_total_carrinho">TOTAL: R$ %1$s</string>
+    <string name="status_pedido">Compra %1$s</string>
+
 </resources>

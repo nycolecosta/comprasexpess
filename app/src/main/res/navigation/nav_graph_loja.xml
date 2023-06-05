@@ -3,18 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_loja"
-    app:startDestination="@id/menu_notas">
-
+    app:startDestination="@id/menu_pedido">
 
     <fragment
-        android:id="@+id/menu_notas"
-        android:name="com.example.comprasexpress.fragment.loja.LojaNotasFragment"
-        android:label="fragment_loja_notas"
-        tools:layout="@layout/fragment_loja_notas" />
+        android:id="@+id/menu_pedido"
+        android:name="com.example.comprasexpress.fragment.loja.LojaPedidoFragment"
+        android:label="fragment_loja_pedido"
+        tools:layout="@layout/fragment_loja_pedido" />
     <fragment
-        android:id="@+id/menu_produtos"
+        android:id="@+id/menu_produto"
         android:name="com.example.comprasexpress.fragment.loja.LojaProdutoFragment"
-        android:label="fragment_loja_prduto"
+        android:label="fragment_loja_produto"
         tools:layout="@layout/fragment_loja_produto" />
     <fragment
         android:id="@+id/menu_categoria"
@@ -26,5 +25,4 @@
         android:name="com.example.comprasexpress.fragment.loja.LojaConfigFragment"
         android:label="fragment_loja_config"
         tools:layout="@layout/fragment_loja_config" />
-
 </navigation>

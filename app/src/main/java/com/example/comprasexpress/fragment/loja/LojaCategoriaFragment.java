@@ -4,21 +4,12 @@ import static android.app.Activity.RESULT_OK;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.ImageDecoder;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,12 +17,21 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
-import com.example.comprasexpress.FireHelper.FirebaseHelper;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+import com.bumptech.glide.Glide;
 import com.example.comprasexpress.R;
 import com.example.comprasexpress.adapter.CategoriaAdapter;
 import com.example.comprasexpress.databinding.DialogDeleteBinding;
 import com.example.comprasexpress.databinding.DialogFormCategoriaBinding;
 import com.example.comprasexpress.databinding.FragmentLojaCategoriaBinding;
+import com.example.comprasexpress.helper.FirebaseHelper;
 import com.example.comprasexpress.model.Categoria;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -41,17 +41,16 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.normal.TedPermission;
-import com.squareup.picasso.Picasso;
 import com.tsuryo.swipeablerv.SwipeLeftRightCallback;
 
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class LojaCategoriaFragment extends Fragment implements CategoriaAdapter.OnClick {
+
     private CategoriaAdapter categoriaAdapter;
-    private List<Categoria> categoriaList = new ArrayList<>();
+    private final List<Categoria> categoriaList = new ArrayList<>();
 
     private DialogFormCategoriaBinding categoriaBinding;
 
@@ -63,7 +62,7 @@ public class LojaCategoriaFragment extends Fragment implements CategoriaAdapter.
     private Categoria categoria;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentLojaCategoriaBinding.inflate(inflater, container, false);
@@ -83,7 +82,7 @@ public class LojaCategoriaFragment extends Fragment implements CategoriaAdapter.
     }
 
     private void configClicks() {
-        binding.btnAddCategorias.setOnClickListener(v -> {
+        binding.btnAddCategoria.setOnClickListener(v -> {
             categoria = null;
             showDialog();
         });
@@ -92,7 +91,7 @@ public class LojaCategoriaFragment extends Fragment implements CategoriaAdapter.
     private void configRv() {
         binding.rvCategorias.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.rvCategorias.setHasFixedSize(true);
-        categoriaAdapter = new CategoriaAdapter(categoriaList, this);
+        categoriaAdapter = new CategoriaAdapter(R.layout.item_categoria_vertical, false, categoriaList, this, requireContext());
         binding.rvCategorias.setAdapter(categoriaAdapter);
 
         binding.rvCategorias.setListener(new SwipeLeftRightCallback.Listener() {
@@ -152,6 +151,8 @@ public class LojaCategoriaFragment extends Fragment implements CategoriaAdapter.
             categoriaAdapter.notifyDataSetChanged();
         });
 
+        deleteBinding.textTitulo.setText("Deseja remover esta categoria ?");
+
         deleteBinding.btnSim.setOnClickListener(v -> {
             categoriaList.remove(categoria);
 
@@ -161,7 +162,7 @@ public class LojaCategoriaFragment extends Fragment implements CategoriaAdapter.
                 binding.textInfo.setText("");
             }
 
-            categoria.Delete();
+            categoria.delete();
 
             categoriaAdapter.notifyDataSetChanged();
 
@@ -183,8 +184,10 @@ public class LojaCategoriaFragment extends Fragment implements CategoriaAdapter.
                 .inflate(LayoutInflater.from(getContext()));
 
         if(categoria != null){
-            categoriaBinding.editCategoria.setText(categoria.getNome());
-            Picasso.get().load(categoria.getUrlImagem()).into(categoriaBinding.imagemCategoria);
+            categoriaBinding.edtCategoria.setText(categoria.getNome());
+            Glide.with(requireContext())
+                    .load(categoria.getUrlImagem())
+                    .into(categoriaBinding.imagemCategoria);
             categoriaBinding.cbTodos.setChecked(categoria.isTodas());
         }
 
@@ -192,7 +195,7 @@ public class LojaCategoriaFragment extends Fragment implements CategoriaAdapter.
 
         categoriaBinding.btnSalvar.setOnClickListener(v -> {
 
-            String nomeCategoria = categoriaBinding.editCategoria.getText().toString().trim();
+            String nomeCategoria = categoriaBinding.edtCategoria.getText().toString().trim();
 
             if(!nomeCategoria.isEmpty()){
 
@@ -206,14 +209,14 @@ public class LojaCategoriaFragment extends Fragment implements CategoriaAdapter.
                 if(caminhoImagem != null){ // Novo cadastro ou edição da imagem
                     salvarImagemFirebase();
                 }else if(categoria.getUrlImagem() != null){ // Edição de nome ou checkBox
-                    categoria.Salvar();
+                    categoria.salvar();
                     dialog.dismiss();
                 }else { // Não preencheu a imagem
                     categoriaBinding.progressBar.setVisibility(View.GONE);
                     Toast.makeText(getContext(), "Escolha uma imagem para a categoria.", Toast.LENGTH_SHORT).show();
                 }
             }else {
-                categoriaBinding.editCategoria.setError("Informação obrigatória.");
+                categoriaBinding.edtCategoria.setError("Informação obrigatória.");
             }
 
         });
@@ -239,7 +242,7 @@ public class LojaCategoriaFragment extends Fragment implements CategoriaAdapter.
             String urlImagem = task.getResult().toString();
 
             categoria.setUrlImagem(urlImagem);
-            categoria.Salvar();
+            categoria.salvar();
 
             categoria = null;
             dialog.dismiss();
@@ -304,18 +307,16 @@ public class LojaCategoriaFragment extends Fragment implements CategoriaAdapter.
                 }
             }
     );
-
     private void ocultaTeclado() {
         InputMethodManager inputMethodManager =
                 (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(categoriaBinding.editCategoria.getWindowToken(),
+        inputMethodManager.hideSoftInputFromWindow(categoriaBinding.edtCategoria.getWindowToken(),
                 InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
     @Override
     public void onClickListener(Categoria categoria) {
         this.categoria = categoria;
-
         showDialog();
     }
 }

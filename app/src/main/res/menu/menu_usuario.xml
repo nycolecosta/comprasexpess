@@ -5,16 +5,16 @@
         android:title="Home"
         android:icon="@drawable/ic_inico"/>
     <item
-        android:id="@+id/menu_leitor"
-        android:title="Leitor"
-        android:icon="@drawable/ic_barcode"/>
+        android:id="@+id/menu_pedido"
+        android:title="Notas"
+        android:icon="@drawable/ic_pedidos"/>
     <item
         android:id="@+id/menu_carrinho"
         android:title="Carrinho"
         android:icon="@drawable/ic_carrinho"/>
     <item
         android:id="@+id/menu_favorito"
-        android:title="Favoritos"
+        android:title="Lista"
         android:icon="@drawable/ic_favorito"/>
     <item
         android:id="@+id/menu_perfil"

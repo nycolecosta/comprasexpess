@@ -1,6 +1,6 @@
 package com.example.comprasexpress.model;
 
-import com.example.comprasexpress.FireHelper.FirebaseHelper;
+import com.example.comprasexpress.helper.FirebaseHelper;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
 
@@ -8,15 +8,15 @@ public class Loja {
 
     private String id;
     private String nome;
+    private String urlLogo;
+    private String CNPJ;
     private String email;
     private String senha;
     private String publicKey;
-    private String acessToken;
+    private String accessToken;
     private int parcelas;
 
-    public Loja(){
-
-
+    public Loja() {
     }
 
     public void salvar(){
@@ -30,22 +30,34 @@ public class Loja {
     }
 
     public void setId(String id) {
-
         this.id = id;
     }
 
     public String getNome() {
-
         return nome;
     }
 
     public void setNome(String nome) {
-
         this.nome = nome;
     }
 
-    public String getEmail() {
+    public String getUrlLogo() {
+        return urlLogo;
+    }
 
+    public void setUrlLogo(String urlLogo) {
+        this.urlLogo = urlLogo;
+    }
+
+    public String getCNPJ() {
+        return CNPJ;
+    }
+
+    public void setCNPJ(String CNPJ) {
+        this.CNPJ = CNPJ;
+    }
+
+    public String getEmail() {
         return email;
     }
 
@@ -70,12 +82,12 @@ public class Loja {
         this.publicKey = publicKey;
     }
 
-    public String getAcessToken() {
-        return acessToken;
+    public String getAccessToken() {
+        return accessToken;
     }
 
-    public void setAcessToken(String acessToken) {
-        this.acessToken = acessToken;
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
     }
 
     public int getParcelas() {
